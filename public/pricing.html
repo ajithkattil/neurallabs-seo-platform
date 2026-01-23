@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - AI SEO Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: #e2e8f0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #94a3b8;
+            font-size: 1.2rem;
+            margin-bottom: 60px;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .pricing-card {
+            background: #1e293b;
+            border: 2px solid #334155;
+            border-radius: 20px;
+            padding: 40px;
+            transition: all 0.3s;
+        }
+
+        .pricing-card:hover {
+            border-color: #3b82f6;
+            transform: translateY(-5px);
+        }
+
+        .pricing-card.featured {
+            border-color: #3b82f6;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
+        }
+
+        .tier-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .tier-price {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #3b82f6;
+            margin-bottom: 5px;
+        }
+
+        .tier-price span {
+            font-size: 1.2rem;
+            color: #94a3b8;
+            font-weight: 400;
+        }
+
+        .tier-description {
+            color: #94a3b8;
+            margin-bottom: 30px;
+            min-height: 50px;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .features-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #334155;
+            display: flex;
+            align-items: center;
+        }
+
+        .features-list li:before {
+            content: "✓";
+            color: #10b981;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 15px;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        .btn:disabled {
+            background: #334155;
+            cursor: not-allowed;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid #3b82f6;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .back-link a {
+            color: #3b82f6;
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Choose Your Plan</h1>
+        <p class="subtitle">Unlock the full power of AI-driven SEO optimization</p>
+
+        <div class="pricing-grid">
+            <!-- Free Tier -->
+            <div class="pricing-card">
+                <div class="tier-name">Free</div>
+                <div class="tier-price">$0<span>/month</span></div>
+                <div class="tier-description">Perfect for trying out the platform</div>
+                <ul class="features-list">
+                    <li>5 SEO analyses per month</li>
+                    <li>10 AI content generations</li>
+                    <li>Basic auto-fix recommendations</li>
+                    <li>Community support</li>
+                </ul>
+                <button class="btn btn-secondary" onclick="window.location.href='/'">Current Plan</button>
+            </div>
+
+            <!-- Pro Tier -->
+            <div class="pricing-card featured">
+                <div class="tier-name">Pro</div>
+                <div class="tier-price">$49<span>/month</span></div>
+                <div class="tier-description">For serious SEO professionals</div>
+                <ul class="features-list">
+                    <li>Unlimited SEO analyses</li>
+                    <li>Unlimited AI content generation</li>
+                    <li>Full auto-fix recommendations</li>
+                    <li>GEO Visibility Score™</li>
+                    <li>Competitive analysis</li>
+                    <li>Export reports</li>
+                    <li>Email support</li>
+                </ul>
+                <button class="btn" onclick="subscribe('pro')">Upgrade to Pro</button>
+            </div>
+
+            <!-- Enterprise Tier -->
+            <div class="pricing-card">
+                <div class="tier-name">Enterprise</div>
+                <div class="tier-price">$149<span>/month</span></div>
+                <div class="tier-description">For agencies and teams</div>
+                <ul class="features-list">
+                    <li>Everything in Pro</li>
+                    <li>API access</li>
+                    <li>White-label option</li>
+                    <li>Priority support</li>
+                    <li>Custom integrations</li>
+                    <li>Team accounts (5 users)</li>
+                    <li>Dedicated account manager</li>
+                </ul>
+                <button class="btn" onclick="subscribe('enterprise')">Upgrade to Enterprise</button>
+            </div>
+        </div>
+
+        <div class="back-link">
+            <a href="/">← Back to Dashboard</a>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'https://seo-platform-api-7vrz.onrender.com/api/v1';
+        
+        async function subscribe(tier) {
+                const tierName = tier.charAt(0).toUpperCase() + tier.slice(1);
+                const price = tier === 'pro' ? '$49/month' : '$149/month';
+    
+                if (confirm(`Interested in ${tierName} plan (${price})?\n\n` +
+                             `Payment integration coming soon.\n\n` +
+                             `Click OK to email us, or Cancel to go back.`)) {
+                window.location.href = `mailto:sales@neurallabs.us?subject=Interested in ${tierName} Plan&body=Hi, I'm interested in the ${tierName} plan (${price}/month). Please contact me when it's available.`;
+                 }
+        }
+    </script>
+</body>
+</html>
