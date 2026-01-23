@@ -187,7 +187,7 @@
                     <li>Export reports</li>
                     <li>Email support</li>
                 </ul>
-                <button class="btn" onclick="subscribe('pro')">Upgrade to Pro</button>
+                <button class="btn" onclick="window.location.href='https://seo-platform-ui.onrender.com/login?plan=pro'">Upgrade to Pro</button>
             </div>
 
             <!-- Enterprise Tier -->
@@ -204,28 +204,18 @@
                     <li>Team accounts (5 users)</li>
                     <li>Dedicated account manager</li>
                 </ul>
-                <button class="btn" onclick="subscribe('enterprise')">Upgrade to Enterprise</button>
+                <button class="btn" onclick="window.location.href='https://seo-platform-ui.onrender.com/login?plan=enterprise'">Upgrade to Enterprise</button>
             </div>
         </div>
 
         <div class="back-link">
-            <a href="/">← Back to Dashboard</a>
+            <a href="/">← Back to Home</a>
         </div>
     </div>
 
     <script>
-        const API_BASE = 'https://seo-platform-api-7vrz.onrender.com/api/v1';
-        
-        async function subscribe(tier) {
-                const tierName = tier.charAt(0).toUpperCase() + tier.slice(1);
-                const price = tier === 'pro' ? '$49/month' : '$149/month';
-    
-                if (confirm(`Interested in ${tierName} plan (${price})?\n\n` +
-                             `Payment integration coming soon.\n\n` +
-                             `Click OK to email us, or Cancel to go back.`)) {
-                window.location.href = `mailto:sales@neurallabs.us?subject=Interested in ${tierName} Plan&body=Hi, I'm interested in the ${tierName} plan (${price}/month). Please contact me when it's available.`;
-                 }
-        }
+        // All pricing buttons now redirect to the React app
+        // Old subscription logic no longer needed
     </script>
 </body>
 </html>
