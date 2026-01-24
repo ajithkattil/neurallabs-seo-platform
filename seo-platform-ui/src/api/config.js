@@ -6,30 +6,30 @@ export const API_CONFIG = {
   TIMEOUT: 30000,
   ENDPOINTS: {
     // Auth
-    LOGIN: '/auth/login',
-    LOGOUT: '/auth/logout',
-    ME: '/auth/me',
+    LOGIN: '/api/v1/auth/login',
+    LOGOUT: '/api/v1/auth/logout',
+    ME: '/api/v1/auth/me',
     
     // Projects
-    PROJECTS: '/projects',
-    PROJECT: (id) => `/projects/${id}`,
+    PROJECTS: '/api/v1/projects',
+    PROJECT: (id) => `/api/v1/projects/${id}`,
     
     // Tasks
-    TASKS: '/tasks',
-    TASK: (id) => `/tasks/${id}`,
+    TASKS: '/api/v1/tasks',
+    TASK: (id) => `/api/v1/tasks/${id}`,
     
     // Integrations
-    INTEGRATIONS: '/integrations',
-    INTEGRATION_CONNECT: (type) => `/integrations/${type}/connect`,
-    INTEGRATION_STATUS: (type) => `/integrations/${type}/status`,
+    INTEGRATIONS: '/api/v1/integrations',
+    INTEGRATION_CONNECT: (type) => `/api/v1/integrations/${type}/connect`,
+    INTEGRATION_STATUS: (type) => `/api/v1/integrations/${type}/status`,
     
     // Agents
-    AGENTS: '/agents',
-    AGENT_EXECUTE: (agentId) => `/agents/${agentId}/execute`,
+    AGENTS: '/api/v1/agents',
+    AGENT_EXECUTE: (agentId) => `/api/v1/agents/${agentId}/execute`,
     
     // Content
-    CONTENT_BRIEFS: '/content/briefs',
-    ACTION_CHECKLISTS: '/content/checklists',
+    CONTENT_BRIEFS: '/api/v1/content/briefs',
+    ACTION_CHECKLISTS: '/api/v1/content/checklists',
   }
 }
 
