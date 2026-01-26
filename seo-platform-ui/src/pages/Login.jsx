@@ -84,7 +84,7 @@ export function Login() {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••••••"
+                placeholder="••••••••••••••"
                 className="input bg-white/5 border-white/20 text-white placeholder-slate-400 focus:ring-emerald-500 focus:border-emerald-500"
                 disabled={loading}
               />
@@ -104,8 +104,8 @@ export function Login() {
           <div className="mt-6 pt-6 border-t border-white/10">
             <p className="text-xs text-slate-400 text-center mb-3">Demo Credentials</p>
             <div className="space-y-2 text-xs text-slate-300 bg-white/5 rounded-lg p-3">
-              <p><span className="text-emerald-400 font-medium">Email:</span> demo@agency.com</p>
-              <p><span className="text-emerald-400 font-medium">Password:</span> demo123</p>
+              <p><span className="text-emerald-400 font-medium">Email:</span> newdemo@agency.com</p>
+              <p><span className="text-emerald-400 font-medium">Password:</span> AgencyDemo2026!Secure</p>
             </div>
           </div>
         </div>
