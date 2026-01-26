@@ -32,16 +32,25 @@ export function AuthProvider({ children }) {
   const login = async (email, password) => {
     try {
       setError(null)
-      const response = await client.post(API_CONFIG.ENDPOINTS.LOGIN, {
-        email,
-        password,
+      
+      // Send form-encoded data (OAuth2 standard)
+      const formData = new URLSearchParams()
+      formData.append('username', email)
+      formData.append('password', password)
+      
+      const response = await client.post(API_CONFIG.ENDPOINTS.LOGIN, formData, {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
       })
-      const { token, user } = response.data
-      localStorage.setItem('auth_token', token)
+      
+      // Extract access_token (not token)
+      const { access_token, user } = response.data
+      localStorage.setItem('auth_token', access_token)
       setUser(user)
       return true
     } catch (err) {
-      setError(err.response?.data?.message || 'Login failed')
+      setError(err.response?.data?.detail || err.response?.data?.message || 'Login failed')
       return false
     }
   }
