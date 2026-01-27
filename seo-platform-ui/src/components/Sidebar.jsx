@@ -5,7 +5,7 @@ export function Sidebar() {
   const location = useLocation()
   const { logout } = useAuth()
   
-  const isActive = (path) => location.pathname === path ? 'bg-emerald-50 border-l-4 border-emerald-600 text-emerald-700' : 'text-slate-600 hover:bg-slate-50'
+  const isActive = (path) => location.pathname === path ? 'bg-blue-50 border-l-4 border-blue-600 text-blue-700' : 'text-slate-600 hover:bg-slate-50'
 
   const menuItems = [
     { path: '/dashboard', label: 'Dashboard', icon: '📊' },
@@ -19,9 +19,9 @@ export function Sidebar() {
       {/* Logo */}
       <div className="p-6 border-b border-slate-200">
         <h1 className="text-xl font-bold text-slate-900">
-          <span className="text-emerald-600">◆</span> Digiverse
+          <span className="text-blue-600">🚀</span> Neural Labs
         </h1>
-        <p className="text-xs text-slate-500 mt-1">SEO Copilot</p>
+        <p className="text-xs text-slate-500 mt-1">AI-Powered SEO</p>
       </div>
 
       {/* Navigation */}
