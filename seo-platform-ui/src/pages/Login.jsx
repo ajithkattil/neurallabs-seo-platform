@@ -1,119 +1,196 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
+import './Login.css'
 
 export function Login() {
   const navigate = useNavigate()
-  const { login, error } = useAuth()
+  const location = useLocation()
+  const { login, signup } = useAuth()
   
+  const [isSignup, setIsSignup] = useState(location.search.includes('signup=true'))
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [fullName, setFullName] = useState('')
+  const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
-  const [localError, setLocalError] = useState(null)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    
-    if (!email || !password) {
-      setLocalError('Email and password are required')
-      return
-    }
-
+    setError('')
     setLoading(true)
-    setLocalError(null)
-    
+
     try {
-      const success = await login(email, password)
-      if (success) {
-        navigate('/dashboard')
+      if (isSignup) {
+        if (!fullName.trim()) {
+          setError('Full name is required')
+          setLoading(false)
+          return
+        }
+        await signup(email, password, fullName)
       } else {
-        setLocalError(error || 'Login failed')
+        await login(email, password)
       }
+      navigate('/dashboard')
     } catch (err) {
-      setLocalError('An error occurred. Please try again.')
+      setError(err.message || 'Authentication failed')
     } finally {
       setLoading(false)
     }
   }
 
+  const fillDemoCredentials = () => {
+    setEmail('testuser@test.com')
+    setPassword('TestPass123456')
+    setFullName('')
+    setError('')
+  }
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-      {/* Decorative elements */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-emerald-500/20 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl" />
-      
-      {/* Login Card */}
-      <div className="relative w-full max-w-md px-6 py-12 sm:px-8">
-        {/* Logo */}
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-white mb-2">
-            <span className="text-emerald-500">◆</span> Digiverse
-          </h1>
-          <p className="text-slate-400">SEO Copilot for Agencies</p>
+    <div className="login-container">
+      {/* Gradient Orbs Background */}
+      <div className="gradient-orb orb-1"></div>
+      <div className="gradient-orb orb-2"></div>
+
+      <div className="login-wrapper">
+        {/* Logo & Branding */}
+        <div className="login-header">
+          <div className="logo-section">
+            <div className="logo-icon">🚀</div>
+            <h1 className="logo-text">Neural Labs</h1>
+          </div>
+          <p className="tagline">AI-Powered SEO Automation</p>
         </div>
 
         {/* Form Card */}
-        <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-8 shadow-2xl">
-          <h2 className="text-2xl font-bold text-white mb-6">Welcome Back</h2>
+        <div className="login-card">
+          <div className="form-header">
+            <h2>{isSignup ? 'Create Account' : 'Welcome Back'}</h2>
+            <p className="form-subtitle">
+              {isSignup ? 'Start automating your SEO' : 'Sign in to your account'}
+            </p>
+          </div>
 
-          {/* Error Alert */}
-          {(localError || error) && (
-            <div className="mb-6 p-4 bg-red-500/20 border border-red-500/40 rounded-lg">
-              <p className="text-red-200 text-sm font-medium">{localError || error}</p>
+          {error && (
+            <div className="error-message">
+              <span className="error-icon">⚠️</span>
+              <span>{error}</span>
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-5">
-            {/* Email */}
-            <div>
-              <label className="label text-white">Email Address</label>
+          <form onSubmit={handleSubmit} className="login-form">
+            {isSignup && (
+              <div className="form-group">
+                <label>Full Name</label>
+                <input
+                  type="text"
+                  placeholder="Your Name"
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
+                  required={isSignup}
+                  disabled={loading}
+                />
+              </div>
+            )}
+
+            <div className="form-group">
+              <label>Email Address</label>
               <input
                 type="email"
+                placeholder="you@agency.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="you@agency.com"
-                className="input bg-white/5 border-white/20 text-white placeholder-slate-400 focus:ring-emerald-500 focus:border-emerald-500"
+                required
                 disabled={loading}
               />
             </div>
 
-            {/* Password */}
-            <div>
-              <label className="label text-white">Password</label>
+            <div className="form-group">
+              <label>Password</label>
               <input
                 type="password"
+                placeholder="••••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••••••••••••"
-                className="input bg-white/5 border-white/20 text-white placeholder-slate-400 focus:ring-emerald-500 focus:border-emerald-500"
+                required
                 disabled={loading}
               />
+              {!isSignup && (
+                <a href="#" className="forgot-password">Forgot password?</a>
+              )}
             </div>
 
-            {/* Submit Button */}
-            <button
-              type="submit"
+            <button 
+              type="submit" 
+              className="btn-submit"
               disabled={loading}
-              className="w-full btn btn-primary mt-6 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {loading ? 'Signing in...' : 'Sign In'}
+              {loading ? (
+                <span className="loading-text">
+                  <span className="spinner"></span>
+                  {isSignup ? 'Creating account...' : 'Signing in...'}
+                </span>
+              ) : (
+                isSignup ? 'Create Account' : 'Sign In'
+              )}
             </button>
           </form>
 
-          {/* Demo Credentials */}
-          <div className="mt-6 pt-6 border-t border-white/10">
-            <p className="text-xs text-slate-400 text-center mb-3">Demo Credentials</p>
-            <div className="space-y-2 text-xs text-slate-300 bg-white/5 rounded-lg p-3">
-              <p><span className="text-emerald-400 font-medium">Email:</span> newdemo@agency.com</p>
-              <p><span className="text-emerald-400 font-medium">Password:</span> AgencyDemo2026!Secure</p>
-            </div>
+          {/* Toggle Signup/Login */}
+          <div className="toggle-auth">
+            <p>
+              {isSignup ? 'Already have an account?' : "Don't have an account?"}
+              <button
+                type="button"
+                className="toggle-btn"
+                onClick={() => {
+                  setIsSignup(!isSignup)
+                  setError('')
+                  setEmail('')
+                  setPassword('')
+                  setFullName('')
+                }}
+              >
+                {isSignup ? 'Sign In' : 'Sign Up'}
+              </button>
+            </p>
           </div>
         </div>
 
-        {/* Footer */}
-        <p className="text-center text-slate-400 text-sm mt-8">
-          Building the future of agency SEO operations
-        </p>
+        {/* Demo Credentials */}
+        <div className="demo-section">
+          <h3>Demo Credentials</h3>
+          <div className="demo-box">
+            <div className="demo-item">
+              <span className="demo-label">Email:</span>
+              <span className="demo-value">testuser@test.com</span>
+            </div>
+            <div className="demo-item">
+              <span className="demo-label">Password:</span>
+              <span className="demo-value">TestPass123456</span>
+            </div>
+          </div>
+          <button 
+            type="button"
+            className="btn-demo"
+            onClick={fillDemoCredentials}
+            disabled={loading}
+          >
+            ➜ Fill Demo Credentials
+          </button>
+        </div>
+
+        {/* Footer Links */}
+        <div className="login-footer">
+          <a href="/">← Back to Home</a>
+          <div className="footer-links">
+            <a href="#">Privacy</a>
+            <span className="separator">•</span>
+            <a href="#">Terms</a>
+            <span className="separator">•</span>
+            <a href="#">Contact</a>
+          </div>
+        </div>
       </div>
     </div>
   )
