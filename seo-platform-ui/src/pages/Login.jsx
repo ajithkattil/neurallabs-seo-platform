@@ -56,7 +56,13 @@ export function Login() {
         {/* Logo & Branding */}
         <div className="login-header">
           <div className="logo-section">
-            <div className="logo-icon">🚀</div>
+            <div className="logo-icon">
+              <img 
+                src="/neural_labs_logo.svg" 
+                alt="Neural Labs Logo" 
+                className="logo-image"
+              />
+            </div>
             <h1 className="logo-text">Neural Labs</h1>
           </div>
           <p className="tagline">AI-Powered SEO Automation</p>
