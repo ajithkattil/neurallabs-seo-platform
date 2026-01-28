@@ -1,0 +1,56 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e3a8a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="redGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#dc2626;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ef4444;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="yellowGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fbbf24;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fcd34d;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="blackGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a1a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#404040;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Dark background -->
+  <rect width="200" height="200" fill="#000000"/>
+  
+  <!-- Background circle -->
+  <circle cx="100" cy="100" r="95" fill="none" stroke="#1f2937" stroke-width="2"/>
+  
+  <!-- Connecting lines - drawn first so they appear behind circles -->
+  <line x1="100" y1="100" x2="70" y2="50" stroke="url(#yellowGradient)" stroke-width="3" opacity="1"/>
+  <line x1="100" y1="100" x2="130" y2="50" stroke="url(#redGradient)" stroke-width="3" opacity="1"/>
+  <line x1="100" y1="100" x2="40" y2="100" stroke="#1E90FF" stroke-width="3" opacity="1"/>
+  <line x1="100" y1="100" x2="160" y2="100" stroke="#FFD700" stroke-width="4" opacity="1"/>
+  <line x1="100" y1="100" x2="70" y2="150" stroke="url(#redGradient)" stroke-width="3" opacity="1"/>
+  <line x1="100" y1="100" x2="130" y2="150" stroke="#1E90FF" stroke-width="3" opacity="1"/>
+  
+  <!-- Central neural node - Blue -->
+  <circle cx="100" cy="100" r="20" fill="url(#blueGradient)" filter="url(#glow)"/>
+  
+  <!-- Connecting nodes - top left Yellow, top right Red -->
+  <circle cx="70" cy="50" r="12" fill="url(#yellowGradient)" opacity="1" filter="url(#glow)"/>
+  <circle cx="130" cy="50" r="12" fill="url(#redGradient)" opacity="1" filter="url(#glow)"/>
+  
+  <!-- Connecting nodes - left Blue, right Yellow -->
+  <circle cx="40" cy="100" r="12" fill="url(#blueGradient)" opacity="1" filter="url(#glow)"/>
+  <circle cx="160" cy="100" r="12" fill="url(#yellowGradient)" opacity="1" filter="url(#glow)"/>
+  
+  <!-- Connecting nodes - bottom left Red, bottom right Blue -->
+  <circle cx="70" cy="150" r="12" fill="url(#redGradient)" opacity="1" filter="url(#glow)"/>
+  <circle cx="130" cy="150" r="12" fill="url(#blueGradient)" opacity="1" filter="url(#glow)"/>
+</svg>
