@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { AuthProvider, useAuth } from './context/AuthContext'
 import Login from './pages/Login'
@@ -82,17 +81,6 @@ function AppRoutes() {
 }
 
 export default function App() {
-  // Keep backend warm - ping health endpoint every 10 minutes
-  useEffect(() => {
-    const keepAlive = setInterval(() => {
-      fetch('https://seo-platform-api-7vrz.onrender.com/health')
-        .then(res => res.json())
-        .catch(err => console.log('Keep-alive ping sent (backend warming up)'))
-    }, 10 * 60 * 1000) // Every 10 minutes
-
-    return () => clearInterval(keepAlive)
-  }, [])
-
   return (
     <BrowserRouter>
       <AuthProvider>
