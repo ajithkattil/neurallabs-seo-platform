@@ -19,7 +19,7 @@ export const API_CONFIG = {
     TASK: (id) => `/api/v1/tasks/${id}`,
     
     // Integrations
-    INTEGRATIONS: '/api/v1/integrations',
+    INTEGRATIONS: '/api/v1/integrations/',
     INTEGRATION_CONNECT: (type) => `/api/v1/integrations/${type}/connect`,
     INTEGRATION_STATUS: (type) => `/api/v1/integrations/${type}/status`,
     
