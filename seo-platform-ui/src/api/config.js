@@ -11,7 +11,7 @@ export const API_CONFIG = {
     ME: '/api/v1/auth/me',
     
     // Projects
-    PROJECTS: '/api/v1/projects',
+    PROJECTS: '/api/v1/projects/',
     PROJECT: (id) => `/api/v1/projects/${id}`,
     
     // Tasks
